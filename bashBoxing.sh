@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 
 echo -e "\nWelcome to the Thacker Arena, today we have the bash boxing event!"
@@ -31,6 +31,7 @@ while true; do
     cointoss=$(shuf -i 1-2 -n 1)
     cpuchoice=$(shuf -i 1-2 -n 1)
     playerchoice=$(shuf -i 1-2 -n 1)
+    sleep 1
     turn=0
     if [ "$cpuchoice" -eq "$cointoss" ]; then
         # cpu goes first
@@ -51,27 +52,101 @@ while true; do
 
                     0)
                         #does this
-                        0 - critical damage, 1 - normal block 2 - strong block 3 - counter
-                        ;;
-                    1)
-                        #does this
-                        ;;
-                    2)
-                        #does this
-                        ;;
-                    3)
-                        #does this
-                        ;;
-                    4)
-                        #does this
-                        ;;
-                    *)
-                        #default case
-                        ;;
-                esac
-            fi
-        done
-     fi
-
-
-done
+                        #0 - critical damage, 1 - normal block 2 - strong block 3 - counter
+                    
+                        playerchoice=$(shuf -i 0-3 -n 1)
+                        case $playerchoice in
+                            0)
+                                playerHP=$((playerHP - 35))
+                                if [ "$playerHP" -le 0 ]; then
+                                    echo "Knocked out, $cpu wins!"
+                                    exit 0
+                                fi
+                                ;;
+                            1)
+                                playerHP=$((playerHP - 20))
+                                if [ "$playerHP" -le 0 ]; then
+                                    echo "TKO, $cpu wins!"
+                                    exit 0
+                                fi
+                                ;;
+                            2)
+                                playerHP=$((playerHP - 10))
+                                if [ "$playerHP" -le 0 ]; then
+                                    echo "Knocked out, $cpu wins!"
+                                    exit 0
+                                fi
+                                ;;
+                            3) 
+                                countered=1
+                                cpucounterturn=0
+                                while [ "$countered" -eq 1 ]; do
+                                    if [ "$cpucounterturn" -eq 0 ]; then
+                                        cpuchoice=$(shuf -i 0-3 -n 1)
+                                        case $cpuchoice in
+                                            0)
+                                                cpuHP=$((cpuHP - 35))
+                                                if [ "$cpuHP" -le 0 ]; then
+                                                    echo "Knocked out, $player wins!"
+                                                    exit 0
+                                                fi
+                                                ;;
+                                            1)
+                                                cpuHP=$((cpuHP - 20))
+                                                if [ "$cpuHP" -le 0 ]; then
+                                                    echo "TKO, $player wins!"
+                                                    exit 0
+                                                fi
+                                                ;;
+                                            2)
+                                                cpuHP=$((cpuHP - 10))
+                                                if [ "$cpuHP" -le 0 ]; then
+                                                    echo "TKO, $player wins!"
+                                                    exit 0
+                                                fi
+                                                ;;
+                                            3)
+                                                cpucounterturn=1
+                                                ;;
+                                        esac
+                                    else
+                                        playerchoice=$(shuf -i 0-3 -n 1)
+                                        case $playerchoice in
+                                            0)
+                                                playerHP=$((playerHP - 35))
+                                                if [ "$playerHP" -le 0 ]; then
+                                                    echo "Knockout, $cpu wins!"
+                                                    exit 0
+                                                fi
+                                                ;;
+                                            1)
+                                                playerHP=$((playerHP - 20))
+                                                if [ "$playerHP" -le 0 ]; then
+                                                    echo "TKO, $cpu wins!"
+                                                    exit 0
+                                                fi
+                                                ;;
+                                            2)
+                                                playerHP=$((playerHP - 10))
+                                                if [ "$playerHP" -le 0 ]; then
+                                                    echo "TKO, $cpu wins!"
+                                                    exit 0
+                                                fi
+                                                ;;
+                                            3)
+                                                cpucounterturn=0
+                                                ;;
+                                        esac
+                                      fi
+                                  done
+                                  ;;
+                          esac
+                          ;;
+                      1)
+                          ## uppercut
+                          ;;
+                  esac
+                fi
+            done
+          fi
+      done
