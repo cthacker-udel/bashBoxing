@@ -506,6 +506,121 @@ while true; do
               else
                   echo -e "\nPlayer HP : $playerHP \n Cpu HP : $cpuHP"
                   sleep 2
+                  echo -e "\n Choices : 1) Leg Kick\n2)Uppercut\n3)Jab\n4)Wheel Kick"
+                  read val
+                  case $val in
+                      0)
+                          playerchoice=$(shuf -i 0-3 -n 1)
+                          case $playerchoice in
+                              0)
+                                  cpuHP=$((cpuHP - 35))
+                                  if [ "$cpuHP" -le 0 ]; then
+                                      echo "Knocked out, $player wins!"
+                                      exit 0
+                                  fi
+                                  turn=1
+                                  ;;
+                              1)
+                                  cpuHP=$((cpuHP - 20))
+                                  if [ "$cpuHP" -le 0 ]; then
+                                      echo "TKO, $player wins!"
+                                      exit 0
+                                  fi
+                                  turn=1
+                                  ;;
+                              2)
+                                  cpuHP=$((cpuHP - 10))
+                                  if [ "$cpuHP" -le 0 ]; then
+                                      echo "TKO, $player wins!"
+                                      exit 0
+                                  fi
+                                  turn=1
+                                  ;;
+                              3)
+                                  countered=1
+                                  cpucounterturn=0
+                                  while [ "$countered" -eq 1 ]; do
+                                      echo "Player leg kick countered"
+                                      if [ "cpucounterturn" -eq 0 ]; then
+                                          playerchoice=$(shuf -i 0-3 -n 1)
+                                          case $cpuchoice in 
+                                              0)
+                                                  playerHP=$((playerHP - 35))
+                                                  if [ "$playerHP" -le 0 ]; then
+                                                      echo "Knocked out, $cpu wins!"
+                                                      exit 0
+                                                  fi
+                                                  turn=1
+                                                  countered=0
+                                                  cpucounterturn=2
+                                                  ;;
+                                              1)
+                                                  playerHP=$((playerHP - 20))
+                                                  if [ "$playerHP" -le 0 ]; then
+                                                      echo "TKO, $cpu wins!"
+                                                      exit 0
+                                                  fi
+                                                  turn=1
+                                                  countered=0
+                                                  cpucounterturn=2
+                                                  ;;
+                                              2)
+                                                  playerHP=$((playerHP - 10))
+                                                  if [ "$playerHP" -le 0 ]; then
+                                                      echo "TKO, $cpu wins!"
+                                                      exit 0
+                                                  fi
+                                                  turn=1
+                                                  countered=0
+                                                  cpucounterturn=2
+                                                  ;;
+                                              3)
+                                                  cpucounterturn=1
+                                                  ;;
+                                          esac
+                                      else
+                                          cpuchoice=$(shuf -i 0-3 -n 1)
+                                          case $cpuchoice in
+                                              0)
+                                                  cpuHP=$((cpuHP - 35))
+                                                  if [ "$cpuHP" -le 0]; then
+                                                      echo "Knocked out, $player wins!"
+                                                      exit 0
+                                                  fi
+                                                  turn=1
+                                                  cpucounterturn=2
+                                                  countered=0
+                                                  ;;
+                                              1)
+                                                  cpuHP=$((cpuHP - 20))
+                                                  if [ "$cpuHP" -le 0 ]; then
+                                                      echo "TKO, $player wins!"
+                                                      exit 0
+                                                  fi
+                                                  turn=1
+                                                  cpucounterturn=2
+                                                  countered=0
+                                                  ;;
+                                              2)
+                                                  cpuHP=$((cpuHP - 10))
+                                                  if [ "$cpuHP" -le 0 ]; then
+                                                      echo "TKO, $player wins!"
+                                                      exit 0
+                                                  fi
+                                                  turn=1
+                                                  cpucounterturn=2
+                                                  countered=0
+                                                  ;;
+                                              3)
+                                                  cpucounterturn=0
+                                                  ;;
+                                          esac
+                                      fi
+                                  done
+                                  ;;
+                          esac
+                          ;;
+                  esac
                fi
            done
         fi
