@@ -24,7 +24,7 @@ read -p "PLAYER : Enter HP " playerHP
 read -p "CPU : Enter HP " cpuHP
 
 echo -e "\n\n----------------------\n\n WELCOME EVERYONE TO THE MATCHUP WE HAVE FOR YOU TODAY! \n In the red corner we have $player weighing in at $playerweight pounds and standing $playerheight inches tall! \n\n In the blue corner we have $cpu weighing in at $cpuweight pounds and standing at $cpuheight inches tall!"
-
+sleep 6
 
 while true; do
     # who starts first
@@ -36,7 +36,7 @@ while true; do
     if [ "$cpuchoice" -eq "$cointoss" ]; then
         # cpu goes first
         turn=1
-    elif [ "$cpucoice" -ne "$cointoss" -a "$playerchoice" -ne "$cointoss" ]; then
+    elif [ "$cpuchoice" -ne "$cointoss" -a "$playerchoice" -ne "$cointoss" ]; then
         continue
     else
         #player goes first
@@ -44,10 +44,10 @@ while true; do
     fi
     if [ "$turn" -ne 0 ]; then
         while true; do
-            echo "first loop"
+            echo -e "\nfirst loop"
             if [ "$turn" -eq 1 ]; then
-                echo -e "cpu is choosing the attack"
-                sleep 1
+                echo -e "\ncpu is choosing the attack"
+                sleep 2
                 cpuchoice=$(shuf -i 0-4 -n 1)
                 case "$cpuchoice" in
 
