@@ -506,7 +506,7 @@ while true; do
               else
                   echo -e "\nPlayer HP : $playerHP \n Cpu HP : $cpuHP"
                   sleep 2
-                  echo -e "\n Choices : 1) Leg Kick\n2)Uppercut\n3)Jab\n4)Wheel Kick"
+                  echo -e "\n Choices : 0) Leg Kick\n1)Uppercut\n2)Jab\n3)Wheel Kick"
                   read val
                   case $val in
                       0)
@@ -518,6 +518,8 @@ while true; do
                                       echo "Knocked out, $player wins!"
                                       exit 0
                                   fi
+                                  echo -e "\nCPUHP : $cpuHP"
+                                  sleep 1
                                   turn=1
                                   ;;
                               1)
@@ -526,6 +528,8 @@ while true; do
                                       echo "TKO, $player wins!"
                                       exit 0
                                   fi
+                                  echo -e "\nCPUHP : $cpuHP"
+                                  sleep 1
                                   turn=1
                                   ;;
                               2)
@@ -534,6 +538,8 @@ while true; do
                                       echo "TKO, $player wins!"
                                       exit 0
                                   fi
+                                  echo -e "\nCPUHP : $cpuHP"
+                                  sleep 1
                                   turn=1
                                   ;;
                               3)
@@ -550,6 +556,8 @@ while true; do
                                                       echo "Knocked out, $cpu wins!"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nPLAYERHP : $playerHP"
+                                                  sleep 1
                                                   turn=1
                                                   countered=0
                                                   cpucounterturn=2
@@ -560,6 +568,8 @@ while true; do
                                                       echo "TKO, $cpu wins!"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nPLAYERHP : $playerHP"
+                                                  sleep 1
                                                   turn=1
                                                   countered=0
                                                   cpucounterturn=2
@@ -570,11 +580,15 @@ while true; do
                                                       echo "TKO, $cpu wins!"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nPLAYERHP : $playerHP"
+                                                  sleep 1
                                                   turn=1
                                                   countered=0
                                                   cpucounterturn=2
                                                   ;;
                                               3)
+                                                  echo -e "\nPlayer countered cpu counter\n"
+                                                  sleep 1
                                                   cpucounterturn=1
                                                   ;;
                                           esac
@@ -587,6 +601,8 @@ while true; do
                                                       echo "Knocked out, $player wins!"
                                                       exit 0
                                                   fi
+                                                  echo -e "CPUHP : $cpuHP"
+                                                  sleep 1
                                                   turn=1
                                                   cpucounterturn=2
                                                   countered=0
@@ -597,6 +613,8 @@ while true; do
                                                       echo "TKO, $player wins!"
                                                       exit 0
                                                   fi
+                                                  echo -e "CPUHP: $cpuHP"
+                                                  sleep 1
                                                   turn=1
                                                   cpucounterturn=2
                                                   countered=0
@@ -607,11 +625,15 @@ while true; do
                                                       echo "TKO, $player wins!"
                                                       exit 0
                                                   fi
+                                                  echo -e "CPUHP : $cpuHP"
+                                                  sleep 1
                                                   turn=1
                                                   cpucounterturn=2
                                                   countered=0
                                                   ;;
                                               3)
+                                                  echo -e "\nPlayers counter to the cpu counter countered"
+                                                  sleep 1
                                                   cpucounterturn=0
                                                   ;;
                                           esac
@@ -630,6 +652,8 @@ while true; do
                                       echo "Knockout, $player wins!"
                                       exit 0
                                   fi
+                                  echo -e "\nCPUHP: $cpuHP"
+                                  sleep 1
                                   turn=1
                                   ;;
                               1)
@@ -638,6 +662,8 @@ while true; do
                                       echo "TKO, $player wins!"
                                       exit 0
                                   fi
+                                  echo -e "\nCPUHP : $cpuHP"
+                                  sleep 1
                                   turn=1
                                   ;;
                               2)
@@ -646,6 +672,8 @@ while true; do
                                       echo "TKO, $player wins!"
                                       exit 0
                                   fi
+                                  echo -e "\nCPUHP : $cpuHP"
+                                  sleep 1
                                   turn=1
                                   ;;
                               3)
@@ -662,6 +690,8 @@ while true; do
                                                       echo "Knocked out, $cpu wins!"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nPLAYERHP : $playerHP"
+                                                  sleep 1
                                                   turn=1
                                                   countered=0
                                                   cpucounterturn=2
@@ -672,6 +702,8 @@ while true; do
                                                       echo "TKO, $cpu wins!"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nPLAYERHP : $playerHP"
+                                                  sleep 1
                                                   turn=1
                                                   countered=0
                                                   cpucounterturn=2
@@ -682,11 +714,14 @@ while true; do
                                                       echo "TKO, $cpu wins!"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nPLAYERHP : $playerHP"
+                                                  sleep 1
                                                   turn=1
                                                   countered=0
                                                   cpucounterturn=2
                                                   ;;
                                               3)
+                                                  echo -e "\nCpu counter countered by player"
                                                   cpucounterturn=1
                                                   ;;
                                           esac
@@ -699,6 +734,8 @@ while true; do
                                                       echo "Knockout, $player wins!"
                                                       exit 0
                                                   fi
+                                                  echo -e "CPUHP : $cpuHP"
+                                                  sleep 1
                                                   turn=1
                                                   cpucounterturn=2
                                                   countered=0
@@ -709,6 +746,8 @@ while true; do
                                                       echo "TKO, $player wins!"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nCPUHP : $cpuHP"
+                                                  sleep 1
                                                   turn=1
                                                   cpucounterturn=0
                                                   countered=0
@@ -719,11 +758,15 @@ while true; do
                                                       echo "TKO, $player wins!"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nCPUHP : $cpuHP"
+                                                  sleep 1
                                                   turn=1
                                                   cpucounterturn=0
                                                   countered=0
                                                   ;;
                                               3)
+                                                  echo -e "Players counter to cpu counter, countered"
+                                                  sleep 1
                                                   cpucounterturn=0
                                                   ;;
                                           esac
