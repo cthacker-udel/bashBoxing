@@ -48,7 +48,7 @@ while true; do
             if [ "$turn" -eq 1 ]; then
                 echo -e "\ncpu is choosing the attack"
                 sleep 2
-                cpuchoice=$(shuf -i 0-4 -n 1)
+                cpuchoice=$(shuf -i 0-3 -n 1)
                 case "$cpuchoice" in
 
                     0)
@@ -59,7 +59,7 @@ while true; do
                         playerchoice=$(shuf -i 0-3 -n 1)
                         case $playerchoice in
                             0)
-                                echo "\n$player misses block attempt, $cpu lands critical leg kick!"
+                                echo -e "\n$player misses block attempt, $cpu lands critical leg kick!"
                                 sleep 1
                                 playerHP=$((playerHP - 35))
                                 if [ "$playerHP" -le 0 ]; then
@@ -210,71 +210,94 @@ while true; do
                       ;;
                       1)
                           ## uppercut
+                          echo -e "\n$cpu chooses uppercut"
+                          sleep 1
                           playerchoice=$(shuf -i 0-3 -n 1)
                           case $playerchoice in
                               0)
+                                  echo -e "\n$player misses block agains $cpu's uppercut, $cpu lands critical uppercut!"
                                   playerHP=$((playerHP - 45))
                                   if [ "$playerHP" -le 0 ]; then
                                       echo "Knocked out, $cpu wins"
                                       exit 0
                                   fi
+                                  echo -e "\nPLAYERHP : $playerHP"
+                                  sleep 2
                                   turn=2
                                   ;;
                               1)
+                                  echo -e "\n$player blocks normally against $cpu's uppercut"
                                   playerHP=$((playerHP - 30))
                                   if [ "$playerHP" -le 0 ]; then
                                       echo "TKO, $cpu wins"
-                                      exit
+                                      exit 0
                                   fi
+                                  echo -e "\nPLAYERHP : $playerHP"
+                                  sleep 2
                                   turn=2
                                   ;;
                               2)
+                                  echo -e "\n$player blocks strongly against $cpu's uppercut"
                                   playerHP=$((playerHP - 15))
                                   if [ "$playerHP" -le 0 ]; then
                                       echo "TKO, $cpu wins"
                                       exit 0
                                   fi
+                                  echo -e "\nPLAYERHP : $playerHP"
+                                  sleep 2
                                   turn=2
                                   ;;
                               3)
+                                  echo -e "\n$player counters $cpu's uppercut"
+                                  sleep 2
                                   countered=1
                                   cpucounterturn=0
                                   while [ "$countered" -eq 1 ]; do
-                                      echo "inside uppercut while loop"
+                                      #echo "inside uppercut while loop"
                                       if [ "$cpucounterturn" -eq 0 ]; then
                                           cpuchoice=$(shuf -i 0-3 -n 1)
                                           case $cpuchoice in
                                               0)
+                                                  echo -e "\n$cpu misses the block against $player's uppercut counter"
                                                   cpuHP=$((cpuHP - 45))
                                                   if [ "$cpuHP" -le 0 ]; then
                                                       echo "Knockout, $player wins"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nCPUHP : $cpuHP"
+                                                  sleep 2
                                                   turn=2
                                                   cpucounterturn=2
                                                   countered=0
                                                   ;;
                                               1)
+                                                  echo -e "\n$cpu blocks normally against $player's uppercut counter"
                                                   cpuHP=$((cpuHP - 30))
                                                   if [ "$cpuHP" -le 0 ]; then
                                                       echo "TKO, $player wins"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nCPUHP : $cpuHP"
+                                                  sleep 2
                                                   turn=2
                                                   cpucounterturn=2
                                                   countered=0
                                                   ;;
                                               2)
+                                                  echo -e "\n$cpu blocks strongly against $player's uppercut counter"
                                                   cpuHP=$((cpuHP - 15))
                                                   if [ "$cpuHP" -le 0 ]; then
                                                       echo "TKO, $player wins"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nCPUHP : $cpuHP"
+                                                  sleep 2
                                                   turn=2
                                                   cpucounterturn=2
                                                   countered=0
                                                   ;;
                                               3)
+                                                  echo -e "$cpu counters $player's uppercut counter"
                                                   cpucounterturn=1
                                                   ;;
                                           esac
@@ -282,36 +305,47 @@ while true; do
                                           playerchoice=$(shuf -i 0-3 -n 1)
                                           case $playerchoice in
                                               0)
+                                                  echo -e "\n$player misses block attempt on $cpu's uppercut counter to $player's counter"
                                                   playerHP=$((playerHP - 45))
                                                   if [ "$playerHP" -le 0 ]; then
                                                       echo "Knockout, $cpu wins"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nPLAYERHP : $playerHP"
+                                                  sleep 2
                                                   turn=2
                                                   cpucounterturn=2
                                                   countered=0
                                                   ;;
                                               1)
+                                                  echo -e "\n$player blocks normally against $cpu's uppercut counter to $player's counter"
                                                   playerHP=$((playerHP - 30))
                                                   if [ "$playerHP" -le 0 ]; then
                                                       echo "TKO, $cpu wins"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nPLAYERHP : $playerHP"
+                                                  sleep 2
                                                   turn=2
                                                   cpucounterturn=2
                                                   countered=0
                                                   ;;
                                               2)
+                                                  echo -e "\n$player blocks strongly against $cpu's uppercut counter to $player's counter"
                                                   playerHP=$((playerHP - 15))
                                                   if [ "$playerHP" -le 0 ]; then
                                                       echo "TKO, $cpu wins"
                                                       exit 0
                                                   fi
+                                                  echo -e "\nPLAYERHP : $playerHP"
+                                                  sleep 2
                                                   turn=2
                                                   cpucounterturn=2
                                                   countered=0
                                                   ;;
                                               3)
+                                                  echo -e "\n$player counters $cpu's uppercut counter to $player's counter"
+                                                  sleep 2
                                                  cpucounterturn=0
                                                  ;;
                                          esac
@@ -327,6 +361,8 @@ while true; do
                           playerchoice=$(shuf -i 0-3 -n 1)
                           case $playerchoice in
                               0)
+                                  echo -e "\n$player misses block attempt on $cpu's jab, $cpu lands critical jab!"
+                                  sleep 2
                                   playerHP=$((playerHP - 15))
                                   if [ "$playerHP" -le 0 ]; then
                                       echo "Knockout, $cpu wins!"
@@ -337,6 +373,7 @@ while true; do
                                   turn=2
                                   ;;
                               1)
+                                  echo -e "\n$player blocks normally against $cpu's jab"
                                   playerHP=$((playerHP - 10))
                                   if [ "$playerHP" -le 0 ]; then
                                       echo "TKO, $cpu wins!"
@@ -347,6 +384,7 @@ while true; do
                                   turn=2
                                   ;;
                               2)
+                                  echo -e "\n$player blocks strongly against $cpu's jab"
                                   playerHP=$((playerHP - 5))
                                   if [ "$playerHP" -le 0 ]; then
                                       echo "TKO, $cpu wins!"
@@ -357,12 +395,14 @@ while true; do
                                   turn=2
                                   ;;
                               3)
+                                  echo -e "\n$player counters $cpu's jab attempt"
                                   cpuchoice=$(shuf -i 0-3 -n 1)
                                   countered=1
                                   while [ "$countered" -eq 1 ]; do
                                       echo "inside jab while loop"
                                       case $cpuchoice in
                                           0)
+                                              echo -e "\n$cpu misses block attempt on $player's jab counter"
                                               cpuHP=$((cpuHP - 15))
                                               if [ "$cpuHP" -le 0 ]; then
                                                   echo "Knocked out, $player wins!"
@@ -374,6 +414,7 @@ while true; do
                                               countered=0
                                               ;;
                                           1)
+                                              echo -e "\n$cpu blocks normally against $player's jab counter"
                                               cpuHP=$((cpuHP - 10))
                                               if [ "$cpuHP" -le 0 ]; then
                                                   echo "TKO, $player wins!"
@@ -385,6 +426,7 @@ while true; do
                                               countered=0
                                               ;;
                                           2)
+                                              echo -e "\n$cpu blocks strongly against $player's jab counter"
                                               cpuHP=$((cpuHP - 5))
                                               if [ "$cpuHP" -le 0 ]; then
                                                   echo "TKO, $player wins!"
@@ -396,12 +438,15 @@ while true; do
                                               countered=0
                                               ;;
                                           3)
+                                              echo -e "\n$cpu counters $player's jab counter"
+                                              sleep 2
                                               playerchoice=$(shuf -i 0-3 -n 1)
                                               case $playerchoice in
                                                   0)
+                                                      echo -e "\n$player misses block attempt on $cpu's jab counter to $player's counter"
                                                       playerHP=$((playerHP - 15))
                                                       if [ "$playerHP" -le 0 ]; then
-                                                          echo "Knocked out, $player wins!"
+                                                          echo "Knocked out, $cpu wins!"
                                                           exit 0
                                                       fi
                                                       echo -e "\nplayerHP = $playerHP"
@@ -410,9 +455,10 @@ while true; do
                                                       countered=0
                                                       ;;
                                                   1)
+                                                      echo -e "\n$player blocks normally against $cpu's jab counter to $player's counter"
                                                       playerHP=$((playerHP - 10))
                                                       if [ "$playerHP" -le 0 ]; then
-                                                          echo "TKO, $player wins!"
+                                                          echo "TKO, $cpu wins!"
                                                           exit 0
                                                       fi
                                                       echo -e "\nplayerHP = $playerHP"
@@ -421,9 +467,10 @@ while true; do
                                                       countered=0
                                                       ;;
                                                   2)
+                                                      echo -e "\n$player blocks strongly against $cpu's jab counter to $player's counter"
                                                       playerHP=$((playerHP - 5))
                                                       if [ "$playerHP" -le 0 ]; then
-                                                          echo "TKO, $player wins!"
+                                                          echo "TKO, $cpu wins!"
                                                           exit 0
                                                       fi
                                                       echo -e "\nplayerHP = $playerHP"
@@ -432,6 +479,7 @@ while true; do
                                                       countered=0
                                                       ;;
                                                   3)
+                                                      echo -e "\n$player counters $cpu's jab counter to $player's counter"
                                                       countered=1
                                                       continue
                                                       ;;
@@ -449,6 +497,7 @@ while true; do
                           playerchoice=$(shuf -i 0-3 -n 1)
                           case $playerchoice in
                               0)
+                                  echo -e "\n$player misses block attempt on $cpu's wheel kick, $cpu lands critical wheel kick!"
                                   playerHP=$((playerHP - 100))
                                   if [ "$playerHP" -le 0 ]; then
                                     echo "Knockout, $cpu wins!"
@@ -456,9 +505,9 @@ while true; do
                                   echo -e "\nPLAYERHP : $playerHP"
                                   sleep 1
                                   turn=2
-                                  exit 0
                                   ;;
                               1)
+                                  echo -e "\n$player blocks normally against $cpu's wheel kick attempt"
                                   playerHP=$((playerHP - 50))
                                   if [ "$playerHP" -le 0 ]; then
                                       echo "TKO, $cpu wins!"
@@ -469,6 +518,7 @@ while true; do
                                   turn=2
                                   ;;
                               2)
+                                  echo -e "\n$player blocks strongly against $cpu's wheel kick attempt"
                                   playerHP=$((playerHP - 10))
                                   if [ "$playerHP" -le 0 ]; then
                                       echo "TKO, $cpu wins!"
@@ -479,12 +529,16 @@ while true; do
                                   turn=2
                                   ;;
                               3)
+                                  echo -e "\n$player counters $cpu's wheel kick attempt"
+                                  sleep 2
                                   countered=1
                                   while [ "$countered" -eq 1 ]; do
                                     cpuchoice=$(shuf -i 0-3 -n 1)
-                                    echo "inside wheel kick while loop"
+                                    #echo "inside wheel kick while loop"
                                     case $cpuchoice in
                                         0)
+                                            echo -e "\n$cpu misses block attempt against $player's wheel kick counter"
+                                            sleep 2
                                             cpuHP=$((cpuHP - 100))
                                             if [ "$cpuHP" -le 0 ]; then
                                                 echo "Knockout, $player wins!"
@@ -496,6 +550,7 @@ while true; do
                                             turn=2
                                             ;;
                                         1)
+                                            echo -e "\n$cpu blocks normally against $player's wheel kick counter"
                                             cpuHP=$((cpuHP - 50))
                                             if [ "$cpuHP" -le 0 ]; then
                                                 echo "TKO, $player wins!"
@@ -507,6 +562,7 @@ while true; do
                                             turn=2
                                             ;;
                                         2)
+                                            echo -e "\n$cpu blocks strongly against $player's wheel kick counter"
                                             cpuHP=$((cpuHP - 10))
                                             if [ "$cpuHP" -le 0 ]; then
                                                 echo "TKO, $player wins!"
@@ -517,9 +573,13 @@ while true; do
                                             turn=2
                                             ;;
                                         3)
+                                            echo -e "\n$cpu counters $player's wheel kick counter"
+                                            sleep 2
                                             playerchoice=$(shuf -i 0-3 -n 1)
                                             case $playerchoice in
                                                 0)
+                                                    echo -e "\n$player misses block attempt on $cpu's wheel kick counter to $player's counter"
+                                                    sleep 2
                                                     playerHP=$((playerHP - 100))
                                                     if [ "$playerHP" -le 0 ]; then
                                                         echo "Knockout, $cpu wins"
@@ -531,6 +591,8 @@ while true; do
                                                     turn=2
                                                     ;;
                                                 1)
+                                                    echo -e "\n$player blocks normally against $cpu's wheel kick counter to $player's counter"
+                                                    sleep 2
                                                     playerHP=$((playerHP - 50))
                                                     if [ "$playerHP" -le 0 ]; then
                                                         echo "TKO, $cpu wins!"
@@ -542,6 +604,8 @@ while true; do
                                                     turn=2
                                                     ;;
                                                 2)
+                                                    echo -e "\n$player blocks strongly against $cpu's wheel kick counter to $player's counter"
+                                                    sleep 2
                                                     playerHP=$((playerHP - 10))
                                                     if [ "$playerHP" -le 0 ]; then
                                                         echo "TKO, $cpu wins!"
@@ -553,6 +617,7 @@ while true; do
                                                     countered=0
                                                     ;;
                                                 3)
+                                                    echo -e "\n$player counters $cpu's wheel kick counter to $player's counter"
                                                     countered=1
                                                     ;;
                                             esac
